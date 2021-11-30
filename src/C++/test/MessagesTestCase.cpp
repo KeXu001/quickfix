@@ -784,7 +784,7 @@ TEST(newOrderSingleGetString)
   object.set( Symbol( "MSFT" ) );
   object.set( Side( '1' ) );
   object.set( TransactTime( create_tm() ) );
-  object.set( OrdType( '2' ) );
+  object.set( OrdType( "2" ) );
 
   CHECK_EQUAL( "8=FIX.4.2\0019=60\00135=D\00111=ORDERID\00121=3\00140=2\001"
                "54=1\00155=MSFT\00160=19000101-00:00:00\00110=226\001",
@@ -810,7 +810,7 @@ TEST(newOrderSingleSetString)
   CHECK_EQUAL( "MSFT", object.get( symbol ) );
   CHECK_EQUAL( '1', object.get( side ) );
   //CHECK_EQUAL( 0, object.get(transactTime) );
-  CHECK_EQUAL( '2', object.get( ordType ) );
+  CHECK_EQUAL( "2", object.get( ordType ) );
 }
 
 TEST(executionReportGetString)
@@ -910,7 +910,7 @@ TEST(orderCancelReplaceGetString)
   object.set( Symbol( "MSFT" ) );
   object.set( Side( '2' ) );
   object.set( TransactTime( create_tm() ) );
-  object.set( OrdType( '3' ) );
+  object.set( OrdType( "3" ) );
 
   CHECK_EQUAL( "8=FIX.4.2\0019=75\00135=G\00111=CLIENTID\00121=1\001"
                "40=3\00141=ORIGINALID\00154=2\00155=MSFT\001"
@@ -939,7 +939,7 @@ TEST(orderCancelReplaceRequestSetString)
   CHECK_EQUAL( '1', object.get( handlInst ) );
   CHECK_EQUAL( "MSFT", object.get( symbol ) );
   CHECK_EQUAL( '2', object.get( side ) );
-  CHECK_EQUAL( '3', object.get( ordType ) );
+  CHECK_EQUAL( "3", object.get( ordType ) );
 }
 
 TEST(orderCancelRequestGetString)

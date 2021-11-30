@@ -221,10 +221,13 @@ Order::Side Application::convert( const FIX::Side& side )
 
 Order::Type Application::convert( const FIX::OrdType& ordType )
 {
-  switch ( ordType )
+  if (ordType == FIX::OrdType_LIMIT)
   {
-    case FIX::OrdType_LIMIT: return Order::limit;
-    default: throw std::logic_error( "Unsupported Order Type, use limit" );
+    return Order::limit;
+  }
+  else
+  {
+    throw std::logic_error( "Unsupported Order Type, use limit" );
   }
 }
 

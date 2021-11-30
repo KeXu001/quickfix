@@ -100,7 +100,7 @@ namespace FIX
   DEFINE_STRING(OrderID);
   DEFINE_QTY(OrderQty);
   DEFINE_CHAR(OrdStatus);
-  DEFINE_CHAR(OrdType);
+  DEFINE_STRING(OrdType);
   DEFINE_STRING(OrigClOrdID);
   DEFINE_UTCTIMESTAMP(OrigTime);
   DEFINE_PRICE(Price);

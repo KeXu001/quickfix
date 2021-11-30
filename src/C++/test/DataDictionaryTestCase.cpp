@@ -657,7 +657,7 @@ struct checkValueFixture
     object.addMsgType( MsgType_NewOrderSingle );
     object.addMsgField( MsgType_NewOrderSingle, FIELD::OrdType );
     object.addMsgField( MsgType_NewOrderSingle, FIELD::OrderRestrictions );
-    object.addFieldType( FIELD::OrdType, TYPE::Char );
+    object.addFieldType( FIELD::OrdType, TYPE::String );
     object.addFieldValue( FIELD::OrdType, "1" );
     object.addFieldType( FIELD::OrderRestrictions, TYPE::MultipleValueString );
     object.addFieldValue( FIELD::OrderRestrictions, "1" );
@@ -672,13 +672,13 @@ TEST_FIXTURE( checkValueFixture, checkValue )
 {
   DataDictionary object;
   FIX40::NewOrderSingle message;
-  message.setField( OrdType( '1' ) );
+  message.setField( OrdType( "1" ) );
   object.validate( message );
 
-  message.setField( OrdType( '2' ) );
+  message.setField( OrdType( "2" ) );
   object.validate( message );
 
-  message.setField( OrdType( '1' ) );
+  message.setField( OrdType( "1" ) );
   message.setField( OrderRestrictions("1 2 3") );
   object.validate( message );
 
@@ -697,8 +697,8 @@ TEST( checkRepeatedTag )
 {
   DataDictionary object;
   FIX40::NewOrderSingle message;
-  message.setField( OrdType('1') );
-  message.setField( OrdType('1'), false );
+  message.setField( OrdType("1") );
+  message.setField( OrdType("1"), false );
   CHECK_THROW( object.validate(message), RepeatedTag );
 }
 
@@ -868,7 +868,7 @@ struct copyFixture
     object.setVersion( BeginString_FIX40 );
     object.addMsgType( MsgType_NewOrderSingle );
     object.addMsgField( MsgType_NewOrderSingle, FIELD::OrdType );
-    object.addFieldType( FIELD::OrdType, TYPE::Char );
+    object.addFieldType( FIELD::OrdType, TYPE::String );
     object.addFieldValue( FIELD::OrdType, "1" );
 
     DataDictionary dataDictionary1;
@@ -892,7 +892,7 @@ TEST_FIXTURE( copyFixture, copy )
   CHECK( dataDictionary.isMsgType( MsgType_NewOrderSingle ) );
   CHECK( dataDictionary.isMsgField( MsgType_NewOrderSingle, FIELD::OrdType ) );
   CHECK( dataDictionary.getFieldType( FIELD::OrdType, type ) );
-  CHECK_EQUAL( TYPE::Char, type );
+  CHECK_EQUAL( TYPE::String, type );
   CHECK( dataDictionary.isFieldValue( FIELD::OrdType, "1" ) );
 
   const DataDictionary* pDD = 0;
